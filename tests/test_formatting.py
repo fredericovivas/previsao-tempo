@@ -99,3 +99,25 @@ def test_format_forecast_empty_days():
 
 def test_attribution_text_is_exact():
     assert ATTRIBUTION == "Weather data by Open-Meteo.com (https://open-meteo.com/)"
+
+
+def test_format_forecast_never_shows_negative_zero():
+    for value in (-0.4, -0.5, -0.0):
+        output = format_forecast(
+            make_location(),
+            [make_day(temp_min=value, temp_max=value)],
+        )
+
+        assert "mín. 0 °C, máx. 0 °C" in output
+        assert "-0 °C" not in output
+
+
+def test_format_forecast_keeps_negative_temperatures():
+    output = format_forecast(
+        make_location(),
+        [make_day(temp_min=-1.4, temp_max=-0.4)],
+    )
+
+    assert "mín. -1 °C" in output
+    assert "máx. 0 °C" in output
+    assert "-0 °C" not in output

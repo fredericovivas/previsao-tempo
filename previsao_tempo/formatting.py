@@ -43,7 +43,9 @@ def location_label(location: LocationLike) -> str:
 
 
 def _format_temperature(value: float) -> str:
-    return f"{value:.0f} °C"
+    # round() devolve um inteiro, evitando o "-0 °C" que o formato ".0f"
+    # produz com valores como -0,4.
+    return f"{round(value)} °C"
 
 
 def _format_rain(probability: float | None) -> str:
