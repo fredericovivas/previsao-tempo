@@ -5,7 +5,7 @@ Usa a API gratuita Open-Meteo, não precisa de chave de API e apresenta os resul
 
 ## Requisitos
 
-- Python 3 (testado com Python 3.13).
+- Python 3 (testado com Python 3.13 no Linux e 3.15 no Windows).
 - `requests`, para os pedidos HTTP.
 - `pytest`, para os testes.
 - Ligação à internet para obter dados reais.
